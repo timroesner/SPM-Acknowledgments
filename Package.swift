@@ -4,11 +4,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "Acknowledgments",
+    name: "SPM-Acknowledgments",
 	platforms: [.iOS("11.0")],
     products: [
         .library(
-            name: "Acknowledgments",
+            name: "SPM-Acknowledgments",
             targets: ["SPM-Acknowledgments"]),
     ],
     targets: [
