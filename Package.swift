@@ -8,7 +8,7 @@ let package = Package(
 	platforms: [.iOS("11.0")],
     products: [
         .library(
-            name: "SPM-Acknowledgments",
+            name: "Acknowledgments",
             targets: ["SPM-Acknowledgments"]),
     ],
     targets: [
