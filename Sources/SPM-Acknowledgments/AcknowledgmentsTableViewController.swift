@@ -12,11 +12,11 @@ import UIKit
 /// present the license, which is being downloaded from GitHub.
 ///
 /// - Note: Should be presented within a `UINavigationController` to display titles in a Navigation Bar.
-final class AcknowledgmentsTableViewController: UITableViewController {
+final public class AcknowledgmentsTableViewController: UITableViewController {
 	private var packages = [Package]()
 	private let cellIdentifier = "cell"
 	
-	override func viewDidLoad() {
+	override public func viewDidLoad() {
 		super.viewDidLoad()
 		title = NSLocalizedString("Acknowledgments", comment: "")
 		packages = ParsePackages().parsePackages()
@@ -24,18 +24,18 @@ final class AcknowledgmentsTableViewController: UITableViewController {
 		tableView.tableFooterView = footerView
 	}
 	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return packages.count
 	}
 	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
 		cell.textLabel?.text = packages[indexPath.row].name
 		cell.accessoryType = .disclosureIndicator
 		return cell
 	}
 	
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		let textViewController = AcknowledgmentsTextViewController(package: packages[indexPath.row])
 		if let navController = navigationController {
