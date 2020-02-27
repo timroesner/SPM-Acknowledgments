@@ -50,10 +50,12 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		textView.dataDetectorTypes = .link
 		textView.isEditable = false
 		textView.backgroundColor = .clear
+		
+		let secondaryLabel: UIColor
 		if #available(iOS 13.0, *) {
-			textView.textColor = .secondaryLabel
+			secondaryLabel = .secondaryLabel
 		} else {
-			textView.textColor = .lightGray
+			secondaryLabel = .lightGray
 		}
 		
 		let attributedString = NSMutableAttributedString(string: "SPM Acknowledgments")
@@ -62,11 +64,13 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		
 		let centerAlign = NSMutableParagraphStyle()
 		centerAlign.alignment = .center
-		let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .paragraphStyle: centerAlign]
+		let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .foregroundColor: secondaryLabel, .paragraphStyle: centerAlign]
 		attributedString.addAttributes(attributes, range: NSRange(location: 0, length: attributedString.string.count))
 		
 		textView.attributedText = attributedString
+		textView.translatesAutoresizingMaskIntoConstraints = true
 		textView.sizeToFit()
+		textView.isScrollEnabled = false
 		return textView
 	}()
 }
