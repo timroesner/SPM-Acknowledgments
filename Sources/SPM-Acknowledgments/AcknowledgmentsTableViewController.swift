@@ -21,10 +21,9 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		title = NSLocalizedString("Acknowledgments", comment: "")
 		packages = ParsePackages().parsePackages()
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-		
-		footerLabel.frame.size = footerLabel.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: .greatestFiniteMagnitude),
-														 withHorizontalFittingPriority: .defaultHigh, verticalFittingPriority: .defaultLow)
-		tableView.tableFooterView = footerLabel
+		footerView.frame.size = footerView.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: .greatestFiniteMagnitude),
+																	 withHorizontalFittingPriority: .defaultHigh, verticalFittingPriority: .defaultLow)
+		tableView.tableFooterView = footerView
 	}
 	
 	override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,9 +47,12 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		}
 	}
 	
-	private var footerLabel: UILabel = {
-		let label = UILabel()
-		label.numberOfLines = 0
+	private let footerView: UITextView = {
+		let textView = UITextView()
+		textView.dataDetectorTypes = .link
+		textView.isEditable = false
+		textView.isSelectable = false
+		textView.backgroundColor = .clear
 		
 		let secondaryLabel: UIColor
 		if #available(iOS 13.0, *) {
@@ -68,7 +70,7 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .foregroundColor: secondaryLabel, .paragraphStyle: centerAlign]
 		attributedString.addAttributes(attributes, range: NSRange(location: 0, length: attributedString.string.count))
 		
-		label.attributedText = attributedString
-		return label
+		textView.attributedText = attributedString
+		return textView
 	}()
 }
