@@ -6,7 +6,8 @@ A Swift Package Manager utility to create an Acknowledgments list of all package
 In Xcode 11 select File > Swift Packages > Add Package Dependency. From there you can add the package through the GitHub repo URL: https://github.com/timroesner/SPM-Acknowledgments  
 
 ## Setup
-For the parsing to properly work, you need to add the Package.resolved file to your project. The easiest way to keep this file up to date is by adding the follwowing as a Build Phase `cp ${PROJECT_FILE_PATH}/project.xcworkspace/xcshareddata/swiftpm/Package.resolved ${PROJECT_DIR}`.
+For the parsing to properly work, you need to add the Package.resolved file to your project. The easiest way to keep this file up to date is by adding the following as a Build Phase:  
+`cp ${PROJECT_FILE_PATH}/project.xcworkspace/xcshareddata/swiftpm/Package.resolved ${PROJECT_DIR}`.
 ![build phase](https://user-images.githubusercontent.com/13894518/75419584-043eba00-58eb-11ea-91c8-542a841b2e04.png)
 
 Once you build your project at least once you should now have a `Package.resolved` file in your project directory. Drag this file into your Xcode project and import it. Important, do not copy this file, but simply create a reference to it, as it will be automatically updated with each build. This is mainly so changes to your dependencies are automatically reflected, without you having to do any updates to the `Package.resovled` file.
