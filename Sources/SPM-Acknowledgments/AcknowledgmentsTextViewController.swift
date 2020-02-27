@@ -24,6 +24,11 @@ internal class AcknowledgmentsTextViewController: UIViewController {
 		self.package = package
 		super.init(nibName: nil, bundle: nil)
 		title = package.name
+		if #available(iOS 13.0, *) {
+			view.backgroundColor = .systemBackground
+		} else {
+			view.backgroundColor = .white
+		}
 	}
 	
 	override func viewDidLoad() {
