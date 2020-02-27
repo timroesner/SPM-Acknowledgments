@@ -57,7 +57,11 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		} else {
 			textView.textColor = .lightGray
 		}
-		textView.text = NSLocalizedString("Generated with SPM Acknowledgments\nhttps://github.com/timroesner/SPM-Acknowledgments", comment: "")
+		let attributedString = NSMutableAttributedString(string: "SPM Acknowledgments")
+		attributedString.addAttribute(.link, value: "https://github.com/timroesner/SPM-Acknowledgments", range: NSRange(location: 0, length: attributedString.string.count))
+		attributedString.insert(NSAttributedString(string: "\(NSLocalizedString("Generated with", comment: "")) "), at: 0)
+		
+		textView.attributedText = attributedString
 		textView.sizeToFit()
 		return textView
 	}()
