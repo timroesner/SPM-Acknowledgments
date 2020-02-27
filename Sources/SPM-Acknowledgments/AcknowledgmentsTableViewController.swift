@@ -21,7 +21,10 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		title = NSLocalizedString("Acknowledgments", comment: "")
 		packages = ParsePackages().parsePackages()
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-		tableView.tableFooterView = footerView
+		
+		footerLabel.frame.size = footerLabel.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: .greatestFiniteMagnitude),
+														 withHorizontalFittingPriority: .defaultHigh, verticalFittingPriority: .defaultLow)
+		tableView.tableFooterView = footerLabel
 	}
 	
 	override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,11 +48,9 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		}
 	}
 	
-	private let footerView: UITextView = {
-		let textView = UITextView()
-		textView.dataDetectorTypes = .link
-		textView.isEditable = false
-		textView.backgroundColor = .clear
+	private var footerLabel: UILabel = {
+		let label = UILabel()
+		label.numberOfLines = 0
 		
 		let secondaryLabel: UIColor
 		if #available(iOS 13.0, *) {
@@ -67,10 +68,7 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .foregroundColor: secondaryLabel, .paragraphStyle: centerAlign]
 		attributedString.addAttributes(attributes, range: NSRange(location: 0, length: attributedString.string.count))
 		
-		textView.attributedText = attributedString
-		textView.translatesAutoresizingMaskIntoConstraints = true
-		textView.sizeToFit()
-		textView.isScrollEnabled = false
-		return textView
+		label.attributedText = attributedString
+		return label
 	}()
 }
