@@ -50,16 +50,20 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		textView.dataDetectorTypes = .link
 		textView.isEditable = false
 		textView.backgroundColor = .clear
-		textView.textAlignment = .center
-		textView.font = UIFont.preferredFont(forTextStyle: .footnote)
 		if #available(iOS 13.0, *) {
 			textView.textColor = .secondaryLabel
 		} else {
 			textView.textColor = .lightGray
 		}
+		
 		let attributedString = NSMutableAttributedString(string: "SPM Acknowledgments")
 		attributedString.addAttribute(.link, value: "https://github.com/timroesner/SPM-Acknowledgments", range: NSRange(location: 0, length: attributedString.string.count))
 		attributedString.insert(NSAttributedString(string: "\(NSLocalizedString("Generated with", comment: "")) "), at: 0)
+		
+		let centerAlign = NSMutableParagraphStyle()
+		centerAlign.alignment = .center
+		let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .paragraphStyle: centerAlign]
+		attributedString.addAttributes(attributes, range: NSRange(location: 0, length: attributedString.string.count))
 		
 		textView.attributedText = attributedString
 		textView.sizeToFit()
