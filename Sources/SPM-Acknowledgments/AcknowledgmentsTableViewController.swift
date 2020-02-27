@@ -51,7 +51,6 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		let textView = UITextView()
 		textView.dataDetectorTypes = .link
 		textView.isEditable = false
-		textView.isSelectable = false
 		textView.backgroundColor = .clear
 		
 		let secondaryLabel: UIColor
