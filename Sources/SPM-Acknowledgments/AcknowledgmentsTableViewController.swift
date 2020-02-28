@@ -18,7 +18,7 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 	
 	override public func viewDidLoad() {
 		super.viewDidLoad()
-		title = NSLocalizedString("Acknowledgments", comment: "")
+		title = NSLocalizedString("Acknowledgments", comment: "Title of list view showing all packages")
 		packages = ParsePackages().parsePackages()
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
 		footerView.frame.size = footerView.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: .greatestFiniteMagnitude),
@@ -62,7 +62,7 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 		
 		let attributedString = NSMutableAttributedString(string: "SPM Acknowledgments")
 		attributedString.addAttribute(.link, value: "https://github.com/timroesner/SPM-Acknowledgments", range: NSRange(location: 0, length: attributedString.string.count))
-		attributedString.insert(NSAttributedString(string: "\(NSLocalizedString("Generated with", comment: "")) "), at: 0)
+		attributedString.insert(NSAttributedString(string: "\(NSLocalizedString("Generated with", comment: "Footer text giving credit to this package.")) "), at: 0)
 		
 		let centerAlign = NSMutableParagraphStyle()
 		centerAlign.alignment = .center
