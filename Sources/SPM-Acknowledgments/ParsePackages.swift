@@ -39,6 +39,6 @@ internal class ParsePackages {
 		guard let packagesPath = Bundle.main.path(forResource: "Package", ofType: "resolved"),
 			let data = try? Data(contentsOf: URL(fileURLWithPath: packagesPath)) ,
 			let json = try? JSONDecoder().decode(Object.self, from: data) else { return [] }
-		return json.object.pins.filter({ $0.name != "SPM Acknowledgments" })
+		return json.object.pins.filter({ $0.name != "SPM-Acknowledgments" })
 	}
 }
