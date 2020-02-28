@@ -1,0 +1,27 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CVCalendar",
+        "repositoryURL": "https://github.com/timroesner/CVCalendar",
+      },
+      {
+        "package": "Disk",
+        "repositoryURL": "https://github.com/saoudrizwan/Disk",
+      },
+      {
+        "package": "Hero",
+        "repositoryURL": "https://github.com/HeroTransitions/Hero",
+      },
+      {
+        "package": "SkyFloatingLabelTextField",
+        "repositoryURL": "https://github.com/Skyscanner/SkyFloatingLabelTextField",
+      },
+      {
+        "package": "SPM-Acknowledgments",
+        "repositoryURL": "https://github.com/timroesner/SPM-Acknowledgments",
+      },
+    ]
+  },
+  "version": 1
+}
