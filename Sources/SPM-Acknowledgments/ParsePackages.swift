@@ -10,7 +10,7 @@ import Foundation
 
 internal struct Package: Codable {
 	let name: String
-	let licenseURL: URL?
+	let licenseURL: URL
 	var license: String = ""
 	
 	private enum CodingKeys: String, CodingKey{
@@ -22,10 +22,6 @@ internal struct Package: Codable {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		name = try values.decode(String.self, forKey: .name)
 		let baseURL = try values.decode(URL.self, forKey: .licenseURL)
-        guard !baseURL.lastPathComponent.contains(".git") else {
-            licenseURL = nil
-            return
-        }
 		licenseURL = baseURL.appendingPathComponent("/raw/master/LICENSE")
 	}
 }
@@ -43,6 +39,6 @@ internal class ParsePackages {
 		guard let packagesPath = Bundle.main.path(forResource: "Package", ofType: "resolved"),
 			let data = try? Data(contentsOf: URL(fileURLWithPath: packagesPath)) ,
 			let json = try? JSONDecoder().decode(Object.self, from: data) else { return [] }
-		return json.object.pins.filter({ $0.name != "SPM-Acknowledgments" })
+        return json.object.pins.filter({ $0.name != "SPM-Acknowledgments" && !$0.licenseURL.absoluteString.contains(".git/") })
 	}
 }

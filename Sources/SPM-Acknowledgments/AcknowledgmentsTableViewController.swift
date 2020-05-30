@@ -31,18 +31,14 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 	
 	override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let package = packages[indexPath.row]
-		cell.textLabel?.text = package.name
-        cell.accessoryType = package.licenseURL != nil ? .disclosureIndicator : .none
+		cell.textLabel?.text = packages[indexPath.row].name
+		cell.accessoryType = .disclosureIndicator
 		return cell
 	}
 	
 	override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-        let package = packages[indexPath.row]
-        guard package.licenseURL != nil else { return }
-        
-		let textViewController = AcknowledgmentsTextViewController(package: package)
+		let textViewController = AcknowledgmentsTextViewController(package: packages[indexPath.row])
 		if let navController = navigationController {
 			navController.pushViewController(textViewController, animated: true)
 		} else {

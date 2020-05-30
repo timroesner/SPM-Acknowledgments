@@ -56,10 +56,7 @@ internal class AcknowledgmentsTextViewController: UIViewController {
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        guard let url = package.licenseURL else { return }
-		let task = URLSession.shared.downloadTask(with: url) { [weak self] localURL, urlResponse, error in
+		let task = URLSession.shared.downloadTask(with: package.licenseURL) { [weak self] localURL, urlResponse, error in
 			guard let self = self, let localURL = localURL else { return }
 			DispatchQueue.main.async {
 				self.textView.text = try? String(contentsOf: localURL)
