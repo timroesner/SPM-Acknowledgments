@@ -18,7 +18,6 @@ final public class AcknowledgmentsTableViewController: UITableViewController {
 	
 	override public func viewDidLoad() {
 		super.viewDidLoad()
-		title = NSLocalizedString("Acknowledgments", comment: "Title of list view showing all packages")
 		packages = ParsePackages().parsePackages()
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
 		footerView.frame.size = footerView.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: .greatestFiniteMagnitude),
