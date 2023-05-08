@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal struct Package: Codable {
+open struct Package: Codable {
 	let name: String
 	let licenseURL: URL
 	var license: String = ""
@@ -26,7 +26,7 @@ internal struct Package: Codable {
 	}
 }
 
-internal class ParsePackages {
+open class ParsePackages {
 	private struct Object: Codable {
 		var object: Pins
 	}
