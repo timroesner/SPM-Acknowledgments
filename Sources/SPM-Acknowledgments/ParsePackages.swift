@@ -8,17 +8,17 @@
 
 import Foundation
 
-open struct Package: Codable {
+public struct Package: Codable {
 	let name: String
 	let licenseURL: URL
 	var license: String = ""
 	
-	private enum CodingKeys: String, CodingKey{
+    public enum CodingKeys: String, CodingKey{
 		case name = "package"
 		case licenseURL = "repositoryURL"
 	}
 	
-	init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		name = try values.decode(String.self, forKey: .name)
 		let baseURL = try values.decode(URL.self, forKey: .licenseURL)
@@ -26,16 +26,16 @@ open struct Package: Codable {
 	}
 }
 
-open class ParsePackages {
-	private struct Object: Codable {
+public class ParsePackages {
+    public struct Object: Codable {
 		var object: Pins
 	}
 	
-	private struct Pins: Codable {
+    public struct Pins: Codable {
 		var pins: [Package]
 	}
 	
-	func parsePackages() -> [Package] {
+    public func parsePackages() -> [Package] {
 		guard let packagesPath = Bundle.main.path(forResource: "Package", ofType: "resolved"),
 			let data = try? Data(contentsOf: URL(fileURLWithPath: packagesPath)) ,
 			let json = try? JSONDecoder().decode(Object.self, from: data) else { return [] }
